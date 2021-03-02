@@ -2,7 +2,7 @@ name: "open groundwater"
 title: "Open Groundwater"
 description: |
   Universal data schema for groundwater level measurements
-output_dir: "_site"
+output_dir: "docs"
 navbar:
   logo:
    image: img/logo_text.png
