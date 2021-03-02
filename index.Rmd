@@ -10,7 +10,7 @@ site: distill::distill_website
 Every day, groundwater data is collected for monitoring, modeling, and reporting requirements. Groundwater sustainability plan (GSP) development in California has led to fragmented and non-standard representations of these critical data.
 
 
-**Open Groundwater (OGW)** is an open source data schema free for use that enables:
+**Open Groundwater (OGW)** is a free, [open source data schema](data-schema.html) that enables:
 
 <i class="fas fa-check" style = "color:#50C878"></i> [Interbasin data interoperability](interbasin.html)  
 <i class="fas fa-check" style = "color:#50C878"></i> [DWR annual reporting compliance](reporting.html)  
