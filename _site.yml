@@ -1,0 +1,28 @@
+name: "open groundwater"
+title: "Open Groundwater"
+description: |
+  Universal data schema for groundwater level measurements
+output_dir: "_site"
+navbar:
+  logo:
+   image: img/logo_text.png
+   href: index.html
+  #search: true
+  right:
+    - text: "Data schema"
+      href: data-schema.html
+    - text: "OGW certification"
+      href: certification.html
+    - text: "Use cases"
+      href: use-cases.html
+      menu:
+      - text: "Interbasin data interoperability"
+        href: interbasin.html
+      - text: "DWR annual reporting compliance"
+        href: reporting.html
+      - text: "IoT sensor networks & automated reporting"
+        href: iot.html
+output: 
+  distill::distill_article:
+    toc: true
+    #toc_depth: 1

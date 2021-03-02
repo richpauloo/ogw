@@ -1,0 +1,28 @@
+---
+title: "IoT sensor networks & automated reporting"
+description: |
+  The future of groundwater monitoring, today
+site: distill::distill_website
+---
+
+# What is an IoT sensor network?
+
+Internet of Things (IoT) sensor technology is ubiquitous, and connects "things" to the internet, for example, cars, homes, water meters, porch cameras, and thermostats. Similarly, groundwater level IoT sensors powered by solar energy are deployed year-round in monitoring wells, and use cellphone towers to send data to a database, which are then available for analysis, visualization, and critical decision-making. Groundwater elevation sampling is possible at unprecedented temporal scales (minutes), all without ever needing to leave the office.
+
+[OGW certified](certification.html) IoT sensors collect and store data in the [OGW data schema](data-schema.html). 
+
+*conceptual model*  
+
+## Telemetry
+
+Telemetry units consist of...  
+
+![](img/telemetry.jpg)  
+
+![](img/telemetry2.jpg)
+
+
+## Sensors
+
+Groundwater sensors are submerged in a monitoring well and measure the pressure above them. Pressure is converted to a water column height and relayed to the telemetry unit.
+

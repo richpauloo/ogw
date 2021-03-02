@@ -1,0 +1,178 @@
+---
+title: "Data schema"
+description: |
+  OGW data schema is informed by the DWR's periodic groundwater level database
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(magrittr)
+library(kableExtra)
+```
+
+
+# What is a data schema?
+
+A data schema is a rulebook for how databases store information, and a common language to ensure that data collected by different parties is standardized. The OGW data schema ensures interoperability if and when data is exchanged, and enforces rules for incoming data that can prevent "bad" data from sneaking in. OGW seamlesslty integrates fragmented data collection efforts across basin boundaries.  
+
+The OGW schema, based on the [DWR Periodic Groundwater Level Measurement database](https://data.cnra.ca.gov/dataset/periodic-groundwater-level-measurements) relates three tables that join on the "`ID`" column, which designates the ID of a monitoring well. The three tables are:  
+
+1. **measurements**: groundwater level information  
+2. **stations**: monitoring well locations
+3. **well_perforations**: well construction information
+
+
+## measurements
+
+```{r, measurements}
+m <- tibble::tribble(
+    ~Variable,    ~`Data Type`,   ~Nullable,      ~Description,
+    "ID",           "TEXT",        "NOT NULL",     "Monitoring well ID",
+    "TIMESTAMP",    "DATE",        "NOT NULL",     "Sample date and time",
+    "GWL_FT",       "FLOAT8",      "NOT NULL",     "Groundwater elevation in ft AMSL"
+)
+kbl(m) %>%
+  kable_material(c("striped", "hover"))
+```
+
+## stations
+
+```{r, stations}
+s <- tibble::tribble(
+    ~Variable,    ~`Data Type`,    ~Nullable,    ~Description,
+    "ID",          "TEXT",          "NOT NULL",   "Monitoring well ID",
+    "LNG_WGS84",   "DECIMAL(9,6)",  "NOT NULL",   "Monitoring well longitude in WGS84",
+    "LAT_WGS84",   "DECIMAL(9,6)",  "NOT NULL",   "Monitoring well latitude in WGS84",
+    "ELEV_FT",      "FLOAT8",       "NOT NULL",   "Monitoring well elevation in ft AMSL"
+)
+kbl(s) %>%
+  kable_material(c("striped", "hover"))
+```
+
+## well_perforations
+
+```{r, well_perforations}
+p <- tibble::tribble(
+    ~Variable,    ~`Data Type`,   ~Nullable,    ~Description,
+    "ID",          "TEXT",         "NOT NULL",   "Monitoring well ID",
+    "TOP_FT",      "FLOAT8",       "NOT NULL",   "Top of perforated interval in ft below land surface",
+    "BOT_FT",      "FLOAT8",       "NOT NULL",   "Bottom of perforated interval in ft below land surface",
+    "TCD_FT",      "FLOAT8",       "NOT NULL",   "Total completed depth in ft below land surface" 
+)
+kbl(p) %>%
+  kable_material(c("striped", "hover"))
+```
+
+# Getting started
+
+The most up-to-date version of OGW's data schema can be downloaded from the [OGW Github page](github.com). `SQL`, `Python`, and `R` data schema setup are provided below for an example Postgres database.
+
+## SQL setup
+
+```sql
+CREATE TABLE gsp.measurements (
+    ID        TEXT         NOT NULL,
+    TIMESTAMP DATE         NOT NULL,
+    GWL_FT    FLOAT8       NOT NULL,
+    ELEV_FT   FLOAT8       NOT NULL
+);
+
+CREATE TABLE gsp.stations (
+    ID        TEXT         NOT NULL,
+    LNG_WGS84 DECIMAL(9,6) NOT NULL,
+    LAT_WGS84 DECIMAL(9,6) NOT NULL
+);
+
+CREATE TABLE gsp.well_perforations (
+    ID        TEXT         NOT NULL,
+    TOP_FT    FLOAT8       NULL,
+    BOT_FT    FLOAT8       NULL,
+    TCD_FT    FLOAT8       NOT NULL
+);
+```
+
+## Python setup
+
+```python
+# Import relevant libraries 
+import sqlalchemy as sa
+import os
+
+# Set database parameters
+host     = "host_name"
+database = "database_name"
+username = "user"
+password = "password"
+port     = 1234
+
+# Connection string
+conn_string = f"postgresql://{username}:{password}@{host}:{port}/{database}"
+
+# Connect to database
+engine = sa.create_engine(conn_string)
+conn   = engine.connect()
+
+# Create "gsp" schema
+
+conn.execute("""
+    CREATE SCHEMA IF NOT EXISTS gsp;
+""")
+
+
+# Create "measurements" table
+try:
+    conn.execute("""
+        DROP TABLE IF EXISTS measurements CASCADE;
+        CREATE TABLE gsp.measurements (
+            ID        TEXT   NOT NULL,
+            TIMESTAMP DATE   NOT NULL,
+            GWL_FT    FLOAT8 NOT NULL,
+            ELEV_FT   FLOAT8 NOT NULL
+        );
+        """)
+
+    print("Table 'measurements' created successfully in PostgreSQL ")
+    
+except Exception as error:
+    print ("Error while creating PostgreSQL table", error)
+
+
+# Create "gsp.stations" table
+try:
+    conn.execute("""
+        DROP TABLE IF EXISTS gsp.stations CASCADE;
+        CREATE TABLE gsp.stations ( 
+            ID        TEXT         NOT NULL,
+            LNG_WGS84 DECIMAL(9,6) NOT NULL,
+            LAT_WGS84 DECIMAL(9,6) NOT NULL
+        );
+""")
+    print("Table 'stations' created successfully in PostgreSQL ")
+    
+except Exception as error:
+    print ("Error while creating PostgreSQL table", error)
+    
+    
+# Create "gsp.well_perforations" table
+try:
+    conn.execute("""
+        DROP TABLE IF EXISTS gsp.well_perforations CASCADE;
+        CREATE TABLE gsp.well_perforations ( 
+             ID        TEXT         NOT NULL,
+             TOP_FT    FLOAT8       NULL,
+             BOT_FT    FLOAT8       NULL,
+             TCD_FT    FLOAT8       NOT NULL
+        );
+""")
+    print("Table 'well_perforations' created successfully in PostgreSQL ")
+    
+except Exception as error:
+    print ("Error while creating PostgreSQL table", error)
+```
+
+## R setup
+
+```r
+r_code_goes <- here()
+```
+

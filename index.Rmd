@@ -1,0 +1,27 @@
+---
+title: "Open Groundwater (OGW)"
+description: |
+  A shared schema for groundwater elevation data interoperability and streamlining
+site: distill::distill_website
+---
+
+# Why OGW?
+
+Every day, groundwater data is collected for monitoring, modeling, and reporting requirements. Groundwater sustainability plan (GSP) development in California has led to fragmented and non-standard representations of these critical data.
+
+
+**Open Groundwater (OGW)** is an open source data schema free for use that enables:
+
+<i class="fas fa-check" style = "color:#50C878"></i> [Interbasin data interoperability](interbasin.html)  
+<i class="fas fa-check" style = "color:#50C878"></i> [DWR annual reporting compliance](reporting.html)  
+<i class="fas fa-check" style = "color:#50C878"></i> [IoT sensor networks & automated reporting](reporting.html)  
+
+[**OGW Certification**](certification.html) designates a database that adheres to the OGW data schema, and may be verified for a database free of charge. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+```

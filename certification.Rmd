@@ -1,0 +1,30 @@
+---
+title: "OGW certification"
+description: |
+  Get ahead of the curve
+site: distill::distill_website
+---
+
+# What is OGW certification?
+
+**OGW certification** means that a groundwater elevation database adheres to the [OGW data schema](data-schema.html) and has been certified by our automated, [online certification system](#). Certification only takes a few minutes, and is as easy as uploading a sample of your data and downloading a certificate. 
+
+*<gif of a online screen capture showing a user dropping data into a Shiny App, obtaining a success message, and downloading the certificate>*
+
+# Why certify?
+
+Once your data has been certified you can be assured it is:
+
+<i class="fas fa-check" style = "color:#50C878"></i> [Interoperable between basins](interbasin.html)  
+<i class="fas fa-check" style = "color:#50C878"></i> [Compliant with DWR annual reporting](reporting.html)  
+<i class="fas fa-check" style = "color:#50C878"></i> Eligible for forthcoming [streamlined reporting to DWR](iot.html)  
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+```
