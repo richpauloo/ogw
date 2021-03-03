@@ -1,14 +1,16 @@
 name: "open groundwater"
-title: "Open Groundwater"
+title: "Open Groundwater (OGW)"
 description: |
   Universal data schema for groundwater level measurements
 output_dir: "docs"
 navbar:
   logo:
-   image: img/logo_text.png
+   image: img/logo.png
    href: index.html
   #search: true
   right:
+    - text: "Home"
+      href: index.html
     - text: "Data schema"
       href: data-schema.html
     - text: "OGW certification"
