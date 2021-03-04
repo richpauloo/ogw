@@ -1,7 +1,7 @@
 ---
 title: "Data schema"
 description: |
-  OGW data schema is informed by the DWR's periodic groundwater level database
+  OGW schema is informed by the DWR's periodic groundwater level database, and the foundation of an interoperable data management system
 ---
 
 ```{r setup, include=FALSE}
