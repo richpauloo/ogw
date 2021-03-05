@@ -1,12 +1,12 @@
 ---
-title: "DWR annual reporting compliance"
+title: "annual reporting compliance"
 description: |
-  OGW certified data is ready to submit to DWR
+  OGW certified data is ready to submit to XXX
 site: distill::distill_website
 ---
 
 # Created with compliance in mind
 
-The OGW data schema is based on DWR's data schema for the [Periodic Groundwater Level Database](https://data.cnra.ca.gov/dataset/periodic-groundwater-level-measurements). The OGW data team coordinates directly with DWR to ensure that the [OGW data schema](data-schema.html) is submission-ready for annual reporting.  
+The OGW data schema is based on XXX's data schema for the [Periodic Groundwater Level Database](https://data.cnra.ca.gov/dataset/periodic-groundwater-level-measurements). The OGW data team coordinates directly with XXX to ensure that the [OGW data schema](data-schema.html) is submission-ready for annual reporting.  
 
 *need to brainstorm how to illustrate this and what else to put here*

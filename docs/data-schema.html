@@ -87,27 +87,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_meta_tags-->
   <title>Open Groundwater (OGW): Data schema</title>
 
-  <meta property="description" itemprop="description" content="OGW data schema is informed by the DWR&#39;s periodic groundwater level database"/>
+  <meta property="description" itemprop="description" content="OGW schema is informed by the XXX&#39;s periodic groundwater level database, and provides the foundation for an interoperable data management system"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Open Groundwater (OGW): Data schema"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="OGW data schema is informed by the DWR&#39;s periodic groundwater level database"/>
+  <meta property="og:description" content="OGW schema is informed by the XXX&#39;s periodic groundwater level database, and provides the foundation for an interoperable data management system"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Open Groundwater (OGW)"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Open Groundwater (OGW): Data schema"/>
-  <meta property="twitter:description" content="OGW data schema is informed by the DWR&#39;s periodic groundwater level database"/>
+  <meta property="twitter:description" content="OGW schema is informed by the XXX&#39;s periodic groundwater level database, and provides the foundation for an interoperable data management system"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Data schema"]},{"type":"character","attributes":{},"value":["OGW data schema is informed by the DWR's periodic groundwater level database"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Data schema"]},{"type":"character","attributes":{},"value":["OGW schema is informed by the XXX's periodic groundwater level database, and provides the foundation for an interoperable data management system"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2054,7 +2054,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Data schema","description":"OGW data schema is informed by the DWR's periodic groundwater level database","authors":[]}
+{"title":"Data schema","description":"OGW schema is informed by the XXX's periodic groundwater level database, and provides the foundation for an interoperable data management system","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2095,7 +2095,7 @@ Use cases
 <h1>Data schema</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>OGW data schema is informed by the DWR’s periodic groundwater level database</p></p>
+<p><p>OGW schema is informed by the XXX’s periodic groundwater level database, and provides the foundation for an interoperable data management system</p></p>
 </div>
 
 
@@ -2121,7 +2121,7 @@ Use cases
 </div>
 <h1 id="what-is-a-data-schema">What is a data schema?</h1>
 <p>A data schema is a rulebook for how databases store information, and a common language to ensure that data collected by different parties is standardized. The OGW data schema ensures interoperability if and when data is exchanged, and enforces rules for incoming data that can prevent “bad” data from sneaking in. OGW seamlesslty integrates fragmented data collection efforts across basin boundaries.</p>
-<p>The OGW schema, based on the <a href="https://data.cnra.ca.gov/dataset/periodic-groundwater-level-measurements">DWR Periodic Groundwater Level Measurement database</a> relates three tables that join on the “<code>ID</code>” column, which designates the ID of a monitoring well. The three tables are:</p>
+<p>The OGW schema, based on the <a href="https://data.cnra.ca.gov/dataset/periodic-groundwater-level-measurements">Periodic Groundwater Level Measurement database</a> relates three tables that join on the “<code>ID</code>” column, which designates the ID of a monitoring well. The three tables are:</p>
 <ol type="1">
 <li><strong>measurements</strong>: groundwater level information<br />
 </li>
@@ -2129,223 +2129,443 @@ Use cases
 <li><strong>well_perforations</strong>: well construction information</li>
 </ol>
 <h2 id="measurements">measurements</h2>
+<ul>
+<li>these data types need to be updated to SQL data types, e.g., <code>site_code</code> should have type <code>VARCHAR(18) NOT NULL</code>.</li>
+</ul>
 <div class="layout-chunk" data-layout="l-body">
-<table class=" lightable-material lightable-striped lightable-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
-Variable
+column
 </th>
 <th style="text-align:left;">
-Data Type
+type
 </th>
 <th style="text-align:left;">
-Nullable
-</th>
-<th style="text-align:left;">
-Description
+description
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-ID
+site_code
 </td>
 <td style="text-align:left;">
-TEXT
+text
 </td>
 <td style="text-align:left;">
-NOT NULL
-</td>
-<td style="text-align:left;">
-Monitoring well ID
+Location based 18 character alphanumeric code assigned to each well
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-TIMESTAMP
+wlm_id
 </td>
 <td style="text-align:left;">
-DATE
+numeric
 </td>
 <td style="text-align:left;">
-NOT NULL
-</td>
-<td style="text-align:left;">
-Sample date and time
+Unique database identifier for water level measurement
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-GWL_FT
+msmt_date
 </td>
 <td style="text-align:left;">
-FLOAT8
+timestamp
 </td>
 <td style="text-align:left;">
-NOT NULL
+Date/Time (in PST) the groundwater level measurement was collected.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wlm_rpe
 </td>
 <td style="text-align:left;">
-Groundwater elevation in ft AMSL
+numeric
+</td>
+<td style="text-align:left;">
+Reference Point Elevation used to collect the groundwater level measurement in feet referenced to the North American Vertical Datum of 1988 (NAVD88)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wlm_gse
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+Ground Surface Elevation at the well site in feet referenced to the North American Vertical Datum of 1988 (NAVD88)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gwe
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+Groundwater elevation in feet above mean sea level, using NAVD88.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gse_gwe
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+Depth to groundwater elevation in feet below ground surface.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wlm_qa_desc
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+Quality assurance description for groundwater level measurement (questionable or no measurement code)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wlm_desc
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+Description of water level measurement method.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wlm_acc_desc
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+Description for accuracy of water level (elevation) measurement.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wlm_org_name
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+Organization which collected the water level measurement.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+coop_org_name
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+Agency that cooperated in collecting the water level measurement.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+monitoring_program
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+DWR Monitoring Program this well is primarily monitored under, e.g. SGMA (Sustainable Groundwater Management Act), CASGEM (California Statewide Groundwater Elevation Monitoring program), or Voluntary.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+msmt_cmt
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+Comments regarding this measurement.
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <h2 id="stations">stations</h2>
+<ul>
+<li>these data types need to be updated to SQL data types, e.g., <code>latitude</code> and <code>longtidude</code> should have type <code>DECIMAL(9,6) NOT NULL</code>.</li>
+</ul>
 <div class="layout-chunk" data-layout="l-body">
-<table class=" lightable-material lightable-striped lightable-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
-Variable
+column
 </th>
 <th style="text-align:left;">
-Data Type
+type
 </th>
 <th style="text-align:left;">
-Nullable
-</th>
-<th style="text-align:left;">
-Description
+description
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-ID
+stn_id
 </td>
 <td style="text-align:left;">
-TEXT
+numeric
 </td>
 <td style="text-align:left;">
-NOT NULL
-</td>
-<td style="text-align:left;">
-Monitoring well ID
+Sequential number assigned to each record in the STATION table.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-LNG_WGS84
+site_code
 </td>
 <td style="text-align:left;">
-DECIMAL(9,6)
+text
 </td>
 <td style="text-align:left;">
-NOT NULL
-</td>
-<td style="text-align:left;">
-Monitoring well longitude in WGS84
+Location based 18 character alphanumeric code assigned to each well. Unique identifier (key).
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-LAT_WGS84
+swn
 </td>
 <td style="text-align:left;">
-DECIMAL(9,6)
+text
 </td>
 <td style="text-align:left;">
-NOT NULL
-</td>
-<td style="text-align:left;">
-Monitoring well latitude in WGS84
+DWR State Well Number
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-ELEV_FT
+well_name
 </td>
 <td style="text-align:left;">
-FLOAT8
+text
 </td>
 <td style="text-align:left;">
-NOT NULL
+Local well identification / local well name, number, or code.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+latitude
 </td>
 <td style="text-align:left;">
-Monitoring well elevation in ft AMSL
+numeric
+</td>
+<td style="text-align:left;">
+Latitude in decimal degrees, using NAD83.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+longitude
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+Longitude in decimal degrees, using NAD83.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gse
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+Ground surface elevation, in feet, using NAVD88.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gse_method
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+Description of the ground surface elevation measurement method.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gse_acc
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+Description for accuracy of ground surface elevation measurement.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+basin_code
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+Basin or subbasin number the well is located within, as defined by the Department of Water Resources.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+basin_name
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+Basin or subbasin name the well is located within, as defined by the Department of Water Resources.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+county_name
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+Name of County the well is located in.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+well_depth
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+A well’s total casing depth or open borehole depth in feet below ground surface.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+well_use
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+Description of well use (Domestic, Irrigation, Monitoring, etc…).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+well_type
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+Description of the well completion type (i.e. single well or part of a nested/ multi-completion well).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wcr_no
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+DWR Well Completion Report Number (OSWCR Legacy Log Number).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+monitoring_program
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+DWR Monitoring Program this well is primarily monitored under, e.g. SGMA (Sustainable Groundwater Management Act), CASGEM (California Statewide Groundwater Elevation Monitoring program), or Voluntary.
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <h2 id="well_perforations">well_perforations</h2>
+<ul>
+<li>these data types need to be updated to SQL data types, e.g., <code>bot_ft_int</code> and <code>longtidude</code> should have type <code>FLOAT8</code>.</li>
+</ul>
 <div class="layout-chunk" data-layout="l-body">
-<table class=" lightable-material lightable-striped lightable-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
-Variable
+column
 </th>
 <th style="text-align:left;">
-Data Type
+type
 </th>
 <th style="text-align:left;">
-Nullable
-</th>
-<th style="text-align:left;">
-Description
+description
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-ID
+site_code
 </td>
 <td style="text-align:left;">
-TEXT
+text
 </td>
 <td style="text-align:left;">
-NOT NULL
-</td>
-<td style="text-align:left;">
-Monitoring well ID
+Location based 18 character alphanumeric code assigned to each well. Links the perforation interval back to the stations table (foreign key)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-TOP_FT
+top_prf_int
 </td>
 <td style="text-align:left;">
-FLOAT8
+numeric
 </td>
 <td style="text-align:left;">
-NOT NULL
-</td>
-<td style="text-align:left;">
-Top of perforated interval in ft below land surface
+Depth in feet below ground surface to the top of this perforation interval.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-BOT_FT
+bot_prf_int
 </td>
 <td style="text-align:left;">
-FLOAT8
+numeric
 </td>
 <td style="text-align:left;">
-NOT NULL
-</td>
-<td style="text-align:left;">
-Bottom of perforated interval in ft below land surface
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-TCD_FT
-</td>
-<td style="text-align:left;">
-FLOAT8
-</td>
-<td style="text-align:left;">
-NOT NULL
-</td>
-<td style="text-align:left;">
-Total completed depth in ft below land surface
+Depth in feet below ground surface to the bottom of this perforation interval.
 </td>
 </tr>
 </tbody>
@@ -2355,24 +2575,16 @@ Total completed depth in ft below land surface
 <p>The most up-to-date version of OGW’s data schema can be downloaded from the <a href="github.com">OGW Github page</a>. <code>SQL</code>, <code>Python</code>, and <code>R</code> data schema setup are provided below for an example Postgres database.</p>
 <h2 id="sql-setup">SQL setup</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> gsp.measurements (</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="kw">ID</span>        TEXT         <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    <span class="dt">TIMESTAMP</span> <span class="dt">DATE</span>         <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    GWL_FT    FLOAT8       <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    ELEV_FT   FLOAT8       <span class="kw">NOT</span> <span class="kw">NULL</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>);</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> gsp.stations (</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    <span class="kw">ID</span>        TEXT         <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    LNG_WGS84 <span class="dt">DECIMAL</span>(<span class="dv">9</span>,<span class="dv">6</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    LAT_WGS84 <span class="dt">DECIMAL</span>(<span class="dv">9</span>,<span class="dv">6</span>) <span class="kw">NOT</span> <span class="kw">NULL</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>);</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> gsp.well_perforations (</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    <span class="kw">ID</span>        TEXT         <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>    TOP_FT    FLOAT8       <span class="kw">NULL</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>    BOT_FT    FLOAT8       <span class="kw">NULL</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>    TCD_FT    FLOAT8       <span class="kw">NOT</span> <span class="kw">NULL</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>);</span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>);</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> gsp.stations (</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>);</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> gsp.well_perforations (</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>);</span></code></pre></div>
 <h2 id="python-setup">Python setup</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co"># Import relevant libraries </span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="im">import</span> sqlalchemy <span class="im">as</span> sa</span>
@@ -2404,50 +2616,42 @@ Total completed depth in ft below land surface
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>    conn.execute(<span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a><span class="st">        DROP TABLE IF EXISTS measurements CASCADE;</span></span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a><span class="st">        CREATE TABLE gsp.measurements (</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a><span class="st">            ID        TEXT   NOT NULL,</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a><span class="st">            TIMESTAMP DATE   NOT NULL,</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a><span class="st">            GWL_FT    FLOAT8 NOT NULL,</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a><span class="st">            ELEV_FT   FLOAT8 NOT NULL</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a><span class="st">        );</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a><span class="st">        &quot;&quot;&quot;</span>)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="st">&quot;Table &#39;measurements&#39; created successfully in PostgreSQL &quot;</span>)</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a>    </span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> error:</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a>    <span class="bu">print</span> (<span class="st">&quot;Error while creating PostgreSQL table&quot;</span>, error)</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a><span class="co"># Create &quot;gsp.stations&quot; table</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true"></a><span class="cf">try</span>:</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true"></a>    conn.execute(<span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true"></a><span class="st">        DROP TABLE IF EXISTS gsp.stations CASCADE;</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true"></a><span class="st">        CREATE TABLE gsp.stations ( </span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true"></a><span class="st">            ID        TEXT         NOT NULL,</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true"></a><span class="st">            LNG_WGS84 DECIMAL(9,6) NOT NULL,</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true"></a><span class="st">            LAT_WGS84 DECIMAL(9,6) NOT NULL</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true"></a><span class="st">        );</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true"></a><span class="st">&quot;&quot;&quot;</span>)</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="st">&quot;Table &#39;stations&#39; created successfully in PostgreSQL &quot;</span>)</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true"></a>    </span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> error:</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true"></a>    <span class="bu">print</span> (<span class="st">&quot;Error while creating PostgreSQL table&quot;</span>, error)</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true"></a>    </span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true"></a>    </span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true"></a><span class="co"># Create &quot;gsp.well_perforations&quot; table</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true"></a><span class="cf">try</span>:</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true"></a>    conn.execute(<span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true"></a><span class="st">        DROP TABLE IF EXISTS gsp.well_perforations CASCADE;</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true"></a><span class="st">        CREATE TABLE gsp.well_perforations ( </span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true"></a><span class="st">             ID        TEXT         NOT NULL,</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true"></a><span class="st">             TOP_FT    FLOAT8       NULL,</span></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true"></a><span class="st">             BOT_FT    FLOAT8       NULL,</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true"></a><span class="st">             TCD_FT    FLOAT8       NOT NULL</span></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true"></a><span class="st">        );</span></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true"></a><span class="st">&quot;&quot;&quot;</span>)</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="st">&quot;Table &#39;well_perforations&#39; created successfully in PostgreSQL &quot;</span>)</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true"></a>    </span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> error:</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true"></a>    <span class="bu">print</span> (<span class="st">&quot;Error while creating PostgreSQL table&quot;</span>, error)</span></code></pre></div>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a><span class="st">        );</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a><span class="st">        &quot;&quot;&quot;</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="st">&quot;Table &#39;measurements&#39; created successfully in PostgreSQL &quot;</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a>    </span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> error:</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a>    <span class="bu">print</span> (<span class="st">&quot;Error while creating PostgreSQL table&quot;</span>, error)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a><span class="co"># Create &quot;gsp.stations&quot; table</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a><span class="cf">try</span>:</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a>    conn.execute(<span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a><span class="st">        DROP TABLE IF EXISTS gsp.stations CASCADE;</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true"></a><span class="st">        CREATE TABLE gsp.stations ( </span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true"></a><span class="st">        );</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true"></a><span class="st">&quot;&quot;&quot;</span>)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="st">&quot;Table &#39;stations&#39; created successfully in PostgreSQL &quot;</span>)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true"></a>    </span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> error:</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true"></a>    <span class="bu">print</span> (<span class="st">&quot;Error while creating PostgreSQL table&quot;</span>, error)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true"></a>    </span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true"></a>    </span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true"></a><span class="co"># Create &quot;gsp.well_perforations&quot; table</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true"></a><span class="cf">try</span>:</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true"></a>    conn.execute(<span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true"></a><span class="st">        DROP TABLE IF EXISTS gsp.well_perforations CASCADE;</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true"></a><span class="st">        CREATE TABLE gsp.well_perforations ( </span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true"></a><span class="st">        );</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true"></a><span class="st">&quot;&quot;&quot;</span>)</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="st">&quot;Table &#39;well_perforations&#39; created successfully in PostgreSQL &quot;</span>)</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true"></a>    </span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> error:</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true"></a>    <span class="bu">print</span> (<span class="st">&quot;Error while creating PostgreSQL table&quot;</span>, error)</span></code></pre></div>
 <h2 id="r-setup">R setup</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>r_code_goes &lt;-<span class="st"> </span><span class="kw">here</span>()</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
@@ -2473,9 +2677,20 @@ p-slim {
 }
 </style>
 <p><p-slim> Open Groundwater (OGW) is a cross-sector effort bridging state and local government, industry, and NGOs.</p>
-<p>OGW is made possible with support from the <u><a href="https://cawaterdata.org/" target = "_blank">California Water Data Consortium</a></u> and the California Department of Water Resources <u><a href="https://water.ca.gov/Programs/Groundwater-Management/SGMA-Groundwater-Management" target = "_blank">Statewide Groundwater Management Program</a></u>. </p-slim></p>
-<p><p-slim> © Copyright 2021 <u><a href="https://www.waterdatalab.com/" target = "_blank">Water Data Lab</a></u> and <u><a href="https://www.databrook.io/" target = "_blank">Databrook</a></u>. | Software licensed under the <u><a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, v2.0</a></u>. </p-slim></p>
-<p><p-slim> Questions? Contact <u><a href = "mailto: tmoran@cawaterdata.org">Tara Moran</a></u>. </p-slim></p>
+<!--
+OGW is made possible with support from the <u><a href="https://cawaterdata.org/" target = "_blank">California Water Data Consortium</a></u> and the California Department of Water Resources <u><a href="https://water.ca.gov/Programs/Groundwater-Management/SGMA-Groundwater-Management" target = "_blank">Statewide Groundwater Management Program</a></u>.
+
+</p-slim>
+
+<p-slim>
+© Copyright 2021 <u><a href="https://www.waterdatalab.com/" target = "_blank">Water Data Lab</a></u> and <u><a href="https://www.databrook.io/" target = "_blank">Databrook</a></u>. | Software licensed under the <u>[Apache License, v2.0](https://www.apache.org/licenses/LICENSE-2.0)</u>.
+</p-slim>
+
+
+<p-slim>
+Questions? Contact <u><a href = "mailto: tmoran@cawaterdata.org">Tara Moran</a></u>.
+</p-slim>
+-->
 </div>
 <!--/radix_placeholder_navigation_after_body-->
 

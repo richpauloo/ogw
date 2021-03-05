@@ -1,0 +1,23 @@
+,type,column,description,label
+0,int,_id,,
+1,numeric,STN_ID,Sequential number assigned to each record in the STATION table.,Station ID
+2,text,SITE_CODE,Location based 18 character alphanumeric code assigned to each well.  Unique identifier (key).,Site Code
+3,text,SWN,DWR State Well Number,State Well Number
+4,text,WELL_NAME,"Local well identification / local well name, number, or code.",Local Well Name
+5,numeric,LATITUDE,"Latitude in decimal degrees, using NAD83.",Latitude
+6,numeric,LONGITUDE,"Longitude in decimal degrees, using NAD83.",Longitude
+7,numeric,GSE,"Ground surface elevation, in feet, using NAVD88.",Ground Surface Elevation
+8,text,GSE_METHOD,Description of the ground surface elevation measurement method.,Ground Surface Elevation Measurement Method
+9,text,GSE_ACC,Description for accuracy of ground surface elevation measurement.,Ground Surface Elevation Measurement Accuracy
+10,text,BASIN_CODE,"Basin or subbasin number the well is located within, as defined by the Department of Water Resources.
+",Basin Subbasin Number
+11,text,BASIN_NAME,"Basin or subbasin name the well is located within, as defined by the Department of Water Resources.
+",Basin Subbasin Name
+12,text,COUNTY_NAME,Name of County the well is located in. ,County Name
+13,numeric,WELL_DEPTH,A well's total casing depth or open borehole depth in feet below ground surface.,Well Depth (feet bgs)
+14,text,WELL_USE,"Description of well use (Domestic, Irrigation, Monitoring, etc...).
+",Well Use Type
+15,text,WELL_TYPE,"Description of the well completion type (i.e. single well or part of a nested/multi-completion well).
+",Well Completion Type
+16,text,WCR_NO,DWR Well Completion Report Number (OSWCR Legacy Log Number).,WCR Number
+17,text,MONITORING_PROGRAM,"DWR Monitoring Program this well is primarily monitored under, e.g. SGMA (Sustainable Groundwater Management Act), CASGEM (California Statewide Groundwater Elevation Monitoring program), or Voluntary.",DWR Monitoring Program
