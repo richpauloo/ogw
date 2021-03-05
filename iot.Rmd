@@ -50,6 +50,6 @@ OGW certified databases are by definition, clean and standardized, making them e
 
 ## Automated reporting
 
-An express lane for streamlined data reporting from OGW certified databases directly to DWR databases is not yet offered, but this is an ongoing conversation and we're working hard to make it a reality.  
+An express lane for streamlined data reporting from OGW certified databases directly to XXX databases is not yet offered, but this is an ongoing conversation and we're working hard to make it a reality.  
 
 Streamlined, automated groundwater data reporting would be absolutely transformative, and usher in a new era of groundwater monitoring and management. We would be able to watch groundwater level change in real time, at a hourly to weekly resolution. We could account for water to operate reservoirs and groundwater basins conjunctively and enable groundwater markets.

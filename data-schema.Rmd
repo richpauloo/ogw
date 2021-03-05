@@ -1,13 +1,17 @@
 ---
 title: "Data schema"
 description: |
-  OGW schema is informed by the DWR's periodic groundwater level database, and the foundation of an interoperable data management system
+  OGW schema is informed by the XXX's periodic groundwater level database, and provides the foundation for an interoperable data management system
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(magrittr)
 library(kableExtra)
+library(here)
+library(readr)
+library(stringr)
+library(dplyr)
 ```
 
 
@@ -15,7 +19,7 @@ library(kableExtra)
 
 A data schema is a rulebook for how databases store information, and a common language to ensure that data collected by different parties is standardized. The OGW data schema ensures interoperability if and when data is exchanged, and enforces rules for incoming data that can prevent "bad" data from sneaking in. OGW seamlesslty integrates fragmented data collection efforts across basin boundaries.  
 
-The OGW schema, based on the [DWR Periodic Groundwater Level Measurement database](https://data.cnra.ca.gov/dataset/periodic-groundwater-level-measurements) relates three tables that join on the "`ID`" column, which designates the ID of a monitoring well. The three tables are:  
+The OGW schema, based on the [Periodic Groundwater Level Measurement database](https://data.cnra.ca.gov/dataset/periodic-groundwater-level-measurements) relates three tables that join on the "`ID`" column, which designates the ID of a monitoring well. The three tables are:  
 
 1. **measurements**: groundwater level information  
 2. **stations**: monitoring well locations
@@ -24,43 +28,53 @@ The OGW schema, based on the [DWR Periodic Groundwater Level Measurement databas
 
 ## measurements
 
+* these data types need to be updated to SQL data types, e.g., `site_code` should have type `VARCHAR(18) NOT NULL`.
+
 ```{r, measurements}
-m <- tibble::tribble(
-    ~Variable,    ~`Data Type`,   ~Nullable,      ~Description,
-    "ID",           "TEXT",        "NOT NULL",     "Monitoring well ID",
-    "TIMESTAMP",    "DATE",        "NOT NULL",     "Sample date and time",
-    "GWL_FT",       "FLOAT8",      "NOT NULL",     "Groundwater elevation in ft AMSL"
-)
-kbl(m) %>%
-  kable_material(c("striped", "hover"))
+read_csv(here("data","DataDictionary_measurements.csv")) %>% 
+  slice(-1) %>% 
+  select(-X1) %>% 
+  select(column, type, description) %>% 
+  mutate(
+    column = tolower(column),
+    description = str_wrap(description, 80)
+  ) %>% 
+  kable("html", escape = F) %>%
+  kable_styling(full_width = F, bootstrap_options = c("striped", "hover"))
 ```
 
 ## stations
 
+* these data types need to be updated to SQL data types, e.g., `latitude` and `longtidude` should have type `DECIMAL(9,6) NOT NULL`.
+
 ```{r, stations}
-s <- tibble::tribble(
-    ~Variable,    ~`Data Type`,    ~Nullable,    ~Description,
-    "ID",          "TEXT",          "NOT NULL",   "Monitoring well ID",
-    "LNG_WGS84",   "DECIMAL(9,6)",  "NOT NULL",   "Monitoring well longitude in WGS84",
-    "LAT_WGS84",   "DECIMAL(9,6)",  "NOT NULL",   "Monitoring well latitude in WGS84",
-    "ELEV_FT",      "FLOAT8",       "NOT NULL",   "Monitoring well elevation in ft AMSL"
-)
-kbl(s) %>%
-  kable_material(c("striped", "hover"))
+read_csv(here("data","DataDictionary_stations.csv")) %>% 
+    slice(-1) %>% 
+    select(-c("X1","label")) %>% 
+    select(column, type, description) %>% 
+    mutate(
+        column = tolower(column),
+        description = str_wrap(description, 80)
+    ) %>% 
+    kable("html", escape = F) %>%
+    kable_styling(full_width = F, bootstrap_options = c("striped", "hover"))
 ```
 
 ## well_perforations
 
+* these data types need to be updated to SQL data types, e.g., `bot_ft_int` and `longtidude` should have type `FLOAT8`.
+
 ```{r, well_perforations}
-p <- tibble::tribble(
-    ~Variable,    ~`Data Type`,   ~Nullable,    ~Description,
-    "ID",          "TEXT",         "NOT NULL",   "Monitoring well ID",
-    "TOP_FT",      "FLOAT8",       "NOT NULL",   "Top of perforated interval in ft below land surface",
-    "BOT_FT",      "FLOAT8",       "NOT NULL",   "Bottom of perforated interval in ft below land surface",
-    "TCD_FT",      "FLOAT8",       "NOT NULL",   "Total completed depth in ft below land surface" 
-)
-kbl(p) %>%
-  kable_material(c("striped", "hover"))
+read_csv(here("data","DataDictionary_perforations.csv")) %>% 
+  slice(-1) %>% 
+  select(-c("X1","label")) %>% 
+  select(column, type, description) %>% 
+  mutate(
+    column = tolower(column),
+    description = str_wrap(description, 80)
+  ) %>% 
+  kable("html", escape = F) %>%
+  kable_styling(full_width = F, bootstrap_options = c("striped", "hover"))
 ```
 
 # Getting started
@@ -71,23 +85,15 @@ The most up-to-date version of OGW's data schema can be downloaded from the [OGW
 
 ```sql
 CREATE TABLE gsp.measurements (
-    ID        TEXT         NOT NULL,
-    TIMESTAMP DATE         NOT NULL,
-    GWL_FT    FLOAT8       NOT NULL,
-    ELEV_FT   FLOAT8       NOT NULL
+
 );
 
 CREATE TABLE gsp.stations (
-    ID        TEXT         NOT NULL,
-    LNG_WGS84 DECIMAL(9,6) NOT NULL,
-    LAT_WGS84 DECIMAL(9,6) NOT NULL
+
 );
 
 CREATE TABLE gsp.well_perforations (
-    ID        TEXT         NOT NULL,
-    TOP_FT    FLOAT8       NULL,
-    BOT_FT    FLOAT8       NULL,
-    TCD_FT    FLOAT8       NOT NULL
+
 );
 ```
 
@@ -124,10 +130,7 @@ try:
     conn.execute("""
         DROP TABLE IF EXISTS measurements CASCADE;
         CREATE TABLE gsp.measurements (
-            ID        TEXT   NOT NULL,
-            TIMESTAMP DATE   NOT NULL,
-            GWL_FT    FLOAT8 NOT NULL,
-            ELEV_FT   FLOAT8 NOT NULL
+
         );
         """)
 
@@ -142,9 +145,7 @@ try:
     conn.execute("""
         DROP TABLE IF EXISTS gsp.stations CASCADE;
         CREATE TABLE gsp.stations ( 
-            ID        TEXT         NOT NULL,
-            LNG_WGS84 DECIMAL(9,6) NOT NULL,
-            LAT_WGS84 DECIMAL(9,6) NOT NULL
+
         );
 """)
     print("Table 'stations' created successfully in PostgreSQL ")
@@ -158,10 +159,7 @@ try:
     conn.execute("""
         DROP TABLE IF EXISTS gsp.well_perforations CASCADE;
         CREATE TABLE gsp.well_perforations ( 
-             ID        TEXT         NOT NULL,
-             TOP_FT    FLOAT8       NULL,
-             BOT_FT    FLOAT8       NULL,
-             TCD_FT    FLOAT8       NOT NULL
+
         );
 """)
     print("Table 'well_perforations' created successfully in PostgreSQL ")

@@ -1,0 +1,16 @@
+,type,column,description,label
+0,int,_id,,
+1,text,SITE_CODE,Location based 18 character alphanumeric code assigned to each well,Site Code
+2,numeric,WLM_ID,Unique database identifier for water level measurement,Water Level Measurement Unique Id
+3,timestamp,MSMT_DATE,Date/Time (in PST) the groundwater level measurement was collected.,Water Level Measurement Date (PST)
+4,numeric,WLM_RPE,Reference Point Elevation used to collect the groundwater level measurement in feet referenced to the North American Vertical Datum of 1988 (NAVD88),RPE for a specific water level measurement record
+5,numeric,WLM_GSE,Ground Surface Elevation at the well site  in feet referenced to the North American Vertical Datum of 1988 (NAVD88),GSE for a specific water level measurement record
+6,numeric,GWE,"Groundwater elevation in feet above mean sea level, using NAVD88.",Groundwater Elevation
+7,numeric,GSE_GWE,Depth to groundwater elevation in feet below ground surface.,Ground Surface Elevation to Groundwater Elevation
+8,text,WLM_QA_DESC,Quality assurance description for groundwater level measurement (questionable or no measurement code),Water Level Measurement Quality Description
+9,text,WLM_DESC,Description of water level measurement method.,Water Level Measurement Method Description
+10,text,WLM_ACC_DESC,Description for accuracy of water level (elevation) measurement.,Water Level Measurement Accuracy Description
+11,text,WLM_ORG_NAME,Organization which collected the water level measurement.,Collecting Organization
+12,text,COOP_ORG_NAME,Agency that cooperated in collecting the water level measurement.,Cooperating Organization
+13,text,MONITORING_PROGRAM,"DWR Monitoring Program this well is primarily monitored under, e.g. SGMA (Sustainable Groundwater Management Act), CASGEM (California Statewide Groundwater Elevation Monitoring program), or Voluntary.",DWR Monitoring Program
+14,text,MSMT_CMT,Comments regarding this measurement.,Water Level Measurement Comments

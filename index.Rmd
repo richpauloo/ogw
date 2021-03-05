@@ -13,7 +13,7 @@ Every day, groundwater data is collected for monitoring, modeling, and reporting
 **Open Groundwater (OGW)** is a free, [open source data schema](data-schema.html) that enables:
 
 <i class="fas fa-check" style = "color:#50C878"></i> [Interbasin data interoperability](interbasin.html)  
-<i class="fas fa-check" style = "color:#50C878"></i> [DWR annual reporting compliance](reporting.html)  
+<i class="fas fa-check" style = "color:#50C878"></i> [XXX annual reporting compliance](reporting.html)  
 <i class="fas fa-check" style = "color:#50C878"></i> [IoT sensor networks & automated reporting](reporting.html)  
 
 [**OGW Certification**](certification.html) designates a database that adheres to the OGW data schema, and may be verified for a database free of charge. 

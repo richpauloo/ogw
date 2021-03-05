@@ -16,8 +16,8 @@ site: distill::distill_website
 Once your data has been certified you can be assured it is:
 
 <i class="fas fa-check" style = "color:#50C878"></i> [Interoperable between basins](interbasin.html)  
-<i class="fas fa-check" style = "color:#50C878"></i> [Compliant with DWR annual reporting](reporting.html)  
-<i class="fas fa-check" style = "color:#50C878"></i> Eligible for forthcoming [streamlined reporting to DWR](iot.html)  
+<i class="fas fa-check" style = "color:#50C878"></i> [Compliant with XXX annual reporting](reporting.html)  
+<i class="fas fa-check" style = "color:#50C878"></i> Eligible for potential [express reporting to XXX](iot.html)  
 
 
 
